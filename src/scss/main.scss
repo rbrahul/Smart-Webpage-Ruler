@@ -1,0 +1,116 @@
+@import './variable.scss';
+
+.rb-zeplin-selected {
+    border: 1px solid $border-color !important;
+    outline: none !important;
+}
+
+.rb-zeplin-focused {
+    border: 1px solid $border-color-active !important;
+    outline: none !important;
+}
+
+.rb-zeplin-ruller {
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    z-index: $topZindex;
+    display: block;
+    top: 0;
+    left: 0;
+
+    &-left {
+        border-left: 1px dashed $border-color;
+        width: 1px;
+        height: 100%;
+    }
+
+    &-right {
+        border-left: 1px dashed $border-color;
+        width: 1px;
+        height: 100%;
+    }
+
+    &-top {
+        border-top: 1px dashed $border-color;
+        width: 100%;
+        height: 1px;
+    }
+
+    &-bottom {
+        border-top: 1px dashed $border-color;
+        width: 100%;
+        height: 1px;
+    }
+}
+
+.rb-zeplin-distance-line {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: $topZindex !important;
+
+    &-vertical {
+        border-left: 1px solid $border-color;
+    }
+    &-vertical::before {
+        @include arrow;
+        top: 0;
+        left: -6px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid $border-color;
+    }
+    &-vertical::after {
+        @include arrow;
+        bottom: 0;
+        left: -6px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid $border-color;
+    }
+
+    &-horizontal {
+        border-top: 1px solid $border-color;
+    }
+    &-horizontal::before {
+        @include arrow;
+        left: 0;
+        top: -5px;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 5px solid $border-color;
+    }
+    &-horizontal::after {
+        @include arrow;
+        right: 0;
+        top: -5px;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 5px solid $border-color;
+    }
+}
+
+.rb-zeplin-no-arrow::after,
+.rb-zeplin-no-arrow::before{
+    display: none;
+}
+
+.rb-zeplin-guide-distance {
+    background-color: $white;
+    box-shadow: 0 1px 1px 1px $dark;
+    padding:3px 5px;
+    border-radius: 2px;
+    color: $border-color;
+    font-weight: bold;
+    font-size: $label;
+    position: absolute;
+    &-vertical {
+        top: 20px;
+        left:20px;
+    }
+    &-horizontal {
+        top: 20px;
+        left:20px;
+    }
+}

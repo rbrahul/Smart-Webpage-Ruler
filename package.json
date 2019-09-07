@@ -1,0 +1,17 @@
+{
+  "name": "zeplin-ruler",
+  "version": "1.0.0",
+  "main": "src/js/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "rm -rf dist/ && parcel build src/index.html --out-dir dist --out-file index"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "sass": "^1.23.0-module.beta.1"
+  }
+}
