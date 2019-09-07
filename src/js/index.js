@@ -5,7 +5,6 @@ import { initalizeEventSubscription} from './handlers/messageHandler';
 import {includeCSS, removeCSS} from './handlers/assetLoader';
 
 import '../scss/main.scss';
-import '../scss/page.scss';
 
 window.selectedElementPosition = null;
 window.focusedElementPosition = null;
