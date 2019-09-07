@@ -3,6 +3,7 @@ import $ from 'jquery';
 import {
     drawRuller,
     clearRuller,
+    clearRullerLabel,
     drawDistanceLine,
     clearDistanceLine,
 } from '../ruler/draw';
@@ -26,7 +27,7 @@ function getMeasuresOfElement(element) {
 }
 
 
-export const clickHandler =  (event) => {
+export const clickHandler = (event) => {
     const { target: element } = event;
     event.preventDefault();
     event.stopPropagation();
@@ -35,7 +36,7 @@ export const clickHandler =  (event) => {
     }
 
     if ($('.rb-zeplin-focused').length) {
-        $('.rb-zeplin-focused').removeClass('rb-focused');
+        $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
     }
 
     selectedElement = element;
@@ -45,13 +46,16 @@ export const clickHandler =  (event) => {
     selectedElementPosition = getMeasuresOfElement(element);
     focusedElementPosition = null;
     const rullerStyles = getRullerPosition(selectedElementPosition);
-    drawRuller(rullerStyles);
+    drawRuller(rullerStyles, selectedElementPosition);
+    return false;
 };
 
 export const mouseEnterHanlder= (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const node = e.currentTarget;
+    clearRullerLabel();
+
+    const node = e.target;
     if ($(node).hasClass('rb-zeplin-selected')) {
         return;
     }
@@ -59,9 +63,12 @@ export const mouseEnterHanlder= (e) => {
         $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
     }
 
+
     focusedElement = node;
     focusedElementPosition = getMeasuresOfElement(node);
-    $(node).addClass('rb-zeplin-focused');
+    if(!$(node).is(selectedElement)) {
+        $(node).addClass('rb-zeplin-focused');
+    }
     clearDistanceLine();
 
     let distanceOfElements;
@@ -93,4 +100,5 @@ export const mouseEnterHanlder= (e) => {
             drawDistanceLine(distanceOfElements);
         }
     }
+    return false;
 }
