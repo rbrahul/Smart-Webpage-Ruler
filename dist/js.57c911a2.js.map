@@ -1,1 +1,0 @@
-{"version":3,"sources":["js/index.js"],"names":["console","log"],"mappings":";AACIA,QAAQC,IAAI","file":"js.57c911a2.js","sourceRoot":"../src","sourcesContent":["(() => {\n    console.log(\"helloworld\");\n})();"]}

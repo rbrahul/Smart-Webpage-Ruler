@@ -1,0 +1,44 @@
+{
+    "name": "Smart Page Ruller",
+    "short_name": "Page Ruller",
+    "offline_enabled": true,
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "icons": {
+        "16": "images/icons/icon-16.png",
+        "32": "images/icons/icon-32.png",
+        "48": "images/icons/icon-48.png",
+        "128": "images/icons/icon-128.png",
+        "256": "images/icons/icon-256.png"
+    },
+    "background": {
+        "scripts": [
+            "js/backround.js"
+        ]
+    },
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "content_scripts": [
+        {
+          "matches": [
+            "http://*/*",
+            "https://*/*"
+          ],
+          "js": [
+            "/js/main.js"
+          ],
+          "run_at": "document_start",
+          "all_frames": true
+        }
+      ],
+    "browser_action": {
+        "default_icon": "images/icons/icon-32.png"
+    },
+    "web_accessible_resources": [
+        "/js/main.js",
+        "/css/main.css"
+    ]
+}
