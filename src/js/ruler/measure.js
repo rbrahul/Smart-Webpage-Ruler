@@ -1,9 +1,8 @@
 export const getRullerPosition = ({
     axis: { top: topOffset, left: leftOffset },
     width,
-    height
-}
-) => {
+    height,
+}) => {
     const left = {
         left: `${leftOffset}px`,
         top: 0,
@@ -30,7 +29,7 @@ export const getRullerPosition = ({
     };
 };
 
-export const getCentralPostion = ({ axis: { top, left }, width, height}) => {
+export const getCentralPostion = ({ axis: { top, left }, width, height }) => {
     const horizontalCenterTop = {
         left: left + width / 2,
         top,
@@ -59,9 +58,12 @@ export const getCentralPostion = ({ axis: { top, left }, width, height}) => {
 
 export const getRelativeDistance = (positionOfFocused, positionOfSelected) => {
     const {
-        axis: { top: focusedElementsTopOffset, left: focusedElementsLeftOffset },
+        axis: {
+            top: focusedElementsTopOffset,
+            left: focusedElementsLeftOffset,
+        },
         height: heightOfFocusedElement,
-        width: widthOfFocusedElement
+        width: widthOfFocusedElement,
     } = positionOfFocused;
     const {
         axis: {
@@ -69,99 +71,106 @@ export const getRelativeDistance = (positionOfFocused, positionOfSelected) => {
             left: selectedElementsLeftOffset,
         },
         height: heightOfSelectedElement,
-        width: widthOfSelectedElement
+        width: widthOfSelectedElement,
     } = positionOfSelected;
-    let verticalPosition,horizontalPosition, verticalDistance, horizontalDistance;
+    let verticalPosition,
+        horizontalPosition,
+        verticalDistance,
+        horizontalDistance;
 
     if (focusedElementsTopOffset < selectedElementsTopOffset) {
-        const {horizontalCenterBottom} = getCentralPostion(positionOfFocused);
-        verticalDistance = selectedElementsTopOffset - (focusedElementsTopOffset+heightOfFocusedElement);
+        const { horizontalCenterBottom } = getCentralPostion(positionOfFocused);
+        verticalDistance =
+            selectedElementsTopOffset -
+            (focusedElementsTopOffset + heightOfFocusedElement);
         verticalPosition = {
             position: horizontalCenterBottom,
-            distance: verticalDistance
+            distance: verticalDistance,
         };
     } else {
-        const {horizontalCenterTop: {
-            top,left
-        }} = getCentralPostion(positionOfFocused);
-        verticalDistance = focusedElementsTopOffset - (selectedElementsTopOffset+heightOfSelectedElement);
+        const {
+            horizontalCenterTop: { top, left },
+        } = getCentralPostion(positionOfFocused);
+        verticalDistance =
+            focusedElementsTopOffset -
+            (selectedElementsTopOffset + heightOfSelectedElement);
         verticalPosition = {
             position: {
                 top: top - verticalDistance,
-                left
+                left,
             },
-            distance: verticalDistance
+            distance: verticalDistance,
         };
     }
 
     if (focusedElementsLeftOffset < selectedElementsLeftOffset) {
-        const {verticalCenterRight} = getCentralPostion(positionOfFocused);
-        horizontalDistance = selectedElementsLeftOffset - (focusedElementsLeftOffset+widthOfFocusedElement);
+        const { verticalCenterRight } = getCentralPostion(positionOfFocused);
+        horizontalDistance =
+            selectedElementsLeftOffset -
+            (focusedElementsLeftOffset + widthOfFocusedElement);
         horizontalPosition = {
             position: verticalCenterRight,
-            distance: horizontalDistance
+            distance: horizontalDistance,
         };
     } else {
-        const {  verticalCenterLeft: {
-            top,left
-        }} = getCentralPostion(positionOfFocused);
-        horizontalDistance = focusedElementsLeftOffset - (selectedElementsLeftOffset+widthOfSelectedElement);
+        const {
+            verticalCenterLeft: { top, left },
+        } = getCentralPostion(positionOfFocused);
+        horizontalDistance =
+            focusedElementsLeftOffset -
+            (selectedElementsLeftOffset + widthOfSelectedElement);
         horizontalPosition = {
             position: {
                 top,
-                left: left - horizontalDistance
+                left: left - horizontalDistance,
             },
-            distance: horizontalDistance
+            distance: horizontalDistance,
         };
     }
     return {
         vertical: verticalPosition,
-        horizontal: horizontalPosition
+        horizontal: horizontalPosition,
     };
 };
 
-
-export const getAbsoluteDistance = (positionOfTargetElement, positionOfSourceElement) => {
+export const getAbsoluteDistance = (
+    positionOfTargetElement,
+    positionOfSourceElement,
+) => {
     const {
-        axis: {
-            top: targetElementsTopOffset,
-            left: targetElementsLeftOffset
-        },
+        axis: { top: targetElementsTopOffset, left: targetElementsLeftOffset },
     } = positionOfTargetElement;
     const {
-        axis: {
-            top: sourceElementsTopOffset,
-            left: sourceElementsLeftOffset,
-        },
+        axis: { top: sourceElementsTopOffset, left: sourceElementsLeftOffset },
     } = positionOfSourceElement;
 
     let vertical, horizontal;
-    const { verticalCenterLeft: {
-        top,
-        left
-    }} = getCentralPostion(positionOfTargetElement);
-    const verticalDistance = targetElementsLeftOffset - sourceElementsLeftOffset;
+    const {
+        verticalCenterLeft: { top, left },
+    } = getCentralPostion(positionOfTargetElement);
+    const verticalDistance =
+        targetElementsLeftOffset - sourceElementsLeftOffset;
     horizontal = {
         position: {
             top: top,
             left: left - verticalDistance,
         },
-        distance: verticalDistance
+        distance: verticalDistance,
     };
-    const { horizontalCenterTop: {
-        top: topOffset,
-        left: leftOffset,
-    }} = getCentralPostion(positionOfTargetElement);
-    const horizontalDistance = targetElementsTopOffset - sourceElementsTopOffset;
+    const {
+        horizontalCenterTop: { top: topOffset, left: leftOffset },
+    } = getCentralPostion(positionOfTargetElement);
+    const horizontalDistance =
+        targetElementsTopOffset - sourceElementsTopOffset;
     vertical = {
         position: {
             top: topOffset - horizontalDistance,
-            left: leftOffset
+            left: leftOffset,
         },
         distance: horizontalDistance,
     };
     return {
         vertical,
-        horizontal
+        horizontal,
     };
-}
+};

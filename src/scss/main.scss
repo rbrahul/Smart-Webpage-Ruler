@@ -92,14 +92,14 @@
 }
 
 .rb-zeplin-no-arrow::after,
-.rb-zeplin-no-arrow::before{
+.rb-zeplin-no-arrow::before {
     display: none;
 }
 
 .rb-zeplin-guide-distance {
     background-color: $white;
     box-shadow: 0 1px 1px 1px $dark;
-    padding:3px 5px;
+    padding: 3px 5px;
     border-radius: 2px;
     color: $border-color;
     font-weight: bold;
@@ -107,10 +107,10 @@
     position: absolute;
     &-vertical {
         top: 20px;
-        left:20px;
+        left: 20px;
     }
     &-horizontal {
         top: 20px;
-        left:20px;
+        left: 20px;
     }
 }

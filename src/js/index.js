@@ -1,7 +1,17 @@
 import $ from 'jquery';
 
-import {drawRuller, clearRuller, drawDistanceLine, clearDistanceLine} from './ruler/draw';
-import {getAbsoluteDistance, getRullerPosition, getRelativeDistance, getCentralPostion} from './ruler/measure';
+import {
+    drawRuller,
+    clearRuller,
+    drawDistanceLine,
+    clearDistanceLine,
+} from './ruler/draw';
+import {
+    getAbsoluteDistance,
+    getRullerPosition,
+    getRelativeDistance,
+    getCentralPostion,
+} from './ruler/measure';
 import '../scss/main.scss';
 import '../scss/page.scss';
 
@@ -15,20 +25,20 @@ $(document).ready(() => {
         return {
             axis,
             width,
-            height
+            height,
         };
-    };
+    }
     $('body').click((event) => {
-        const {target: element} = event;
+        const { target: element } = event;
         event.preventDefault();
         event.stopPropagation();
-            if($('.rb-zeplin-selected').length ) {
-                $('.rb-zeplin-selected').removeClass('rb-zeplin-selected');
-            }
+        if ($('.rb-zeplin-selected').length) {
+            $('.rb-zeplin-selected').removeClass('rb-zeplin-selected');
+        }
 
-           if($('.rb-zeplin-focused').length ) {
-                $('.rb-zeplin-focused').removeClass('rb-focused');
-            }
+        if ($('.rb-zeplin-focused').length) {
+            $('.rb-zeplin-focused').removeClass('rb-focused');
+        }
 
         selectedElement = element;
         $(element).addClass('rb-zeplin-selected');
@@ -44,10 +54,10 @@ $(document).ready(() => {
         e.preventDefault();
         e.stopPropagation();
         const node = e.currentTarget;
-        if($(node).hasClass('rb-zeplin-selected')) {
+        if ($(node).hasClass('rb-zeplin-selected')) {
             return;
         }
-        if($('.rb-zeplin-focused').length ) {
+        if ($('.rb-zeplin-focused').length) {
             $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
         }
 
@@ -57,23 +67,31 @@ $(document).ready(() => {
         clearDistanceLine();
 
         let distanceOfElements;
-        if(selectedElement &&
+        if (
+            selectedElement &&
             focusedElement &&
             ($(selectedElement).has(focusedElement).length ||
-            $(focusedElement).has(selectedElement).length)) {
-            let targetElement,sourceElement;
-            if($(selectedElement).has(focusedElement).length) {
+                $(focusedElement).has(selectedElement).length)
+        ) {
+            let targetElement, sourceElement;
+            if ($(selectedElement).has(focusedElement).length) {
                 targetElement = focusedElement;
                 sourceElement = selectedElement;
             } else {
                 targetElement = selectedElement;
                 sourceElement = focusedElement;
             }
-            distanceOfElements = getAbsoluteDistance(getMeasuresOfElement(targetElement), getMeasuresOfElement(sourceElement));
+            distanceOfElements = getAbsoluteDistance(
+                getMeasuresOfElement(targetElement),
+                getMeasuresOfElement(sourceElement),
+            );
             drawDistanceLine(distanceOfElements);
         } else {
-            if(focusedElementPosition && selectedElementPosition) {
-                distanceOfElements = getRelativeDistance(focusedElementPosition, selectedElementPosition);
+            if (focusedElementPosition && selectedElementPosition) {
+                distanceOfElements = getRelativeDistance(
+                    focusedElementPosition,
+                    selectedElementPosition,
+                );
                 drawDistanceLine(distanceOfElements);
             }
         }
