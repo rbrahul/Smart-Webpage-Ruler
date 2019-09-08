@@ -1,6 +1,6 @@
 {
-    "name": "Smart Page Ruller",
-    "short_name": "Page Ruller",
+    "name": "Smart Page Ruler",
+    "short_name": "Page Ruler",
     "offline_enabled": true,
     "version": "1.0.0",
     "manifest_version": 2,
