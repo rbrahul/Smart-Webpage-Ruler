@@ -38,10 +38,10 @@ $(document).ready(function() {
     });
 	};
 
-	
 
 
-	// Call the functions 
+
+	// Call the functions
 	magnifPopup();
 	magnifVideo();
 
