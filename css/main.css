@@ -1,13 +1,14 @@
 .browser-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-right:10px;
 }
 
 .prime-btn {
     padding: 10px 14px !important;
     border-radius: 5px !important;
-} 
+    font-size: 20px !important;
+}
 
 .donate-button{
     padding: 10px 15px !important;
