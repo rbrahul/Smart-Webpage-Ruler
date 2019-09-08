@@ -1,17 +1,29 @@
-import { ACTIVATE_APP } from '../constants/messages';
-
+import {
+    ACTIVATE_APP,
+    DEACTIVATE_APP,
+    TOGGLE_APP,
+} from '../constants/messages';
 
 export const initalizeEventSubscription = (onSubscribe, onUnSubscribe) => {
     chrome.runtime.onMessage.addListener((request) => {
-        console.log(request,window.RB_ZEPLIN_RULLER_ENABLED);
-        if (request.action === ACTIVATE_APP) {
-            if (!window.RB_ZEPLIN_RULLER_ENABLED) {
+        switch (request.action) {
+            case TOGGLE_APP:
+                if (!window.RB_ZEPLIN_RULLER_ENABLED) {
+                    onSubscribe();
+                    window.RB_ZEPLIN_RULLER_ENABLED = true;
+                } else {
+                    onUnSubscribe();
+                    window.RB_ZEPLIN_RULLER_ENABLED = false;
+                }
+                break;
+            case ACTIVATE_APP:
                 onSubscribe();
                 window.RB_ZEPLIN_RULLER_ENABLED = true;
-            } else {
+                break;
+            case DEACTIVATE_APP:
                 onUnSubscribe();
                 window.RB_ZEPLIN_RULLER_ENABLED = false;
-            }
+                break;
         }
     });
 };
