@@ -14,7 +14,7 @@ Unlike other available tools in market **Smart Webpage Ruler** has lot of unqiue
 - [x] Amazing user experience and design
 - [x] Easier accessiblity, simply click and done!
 
-[![Smart Page Ruler](https://raw.githubusercontent.com/rbrahul/Smart-Webpage-Ruler/master/images/chrome.png)](https://chrome.google.com/webstore/detail/json-viewer-awesome/iemadiahhbebdklepanmkjenfdebfpfe)
+[![Smart Page Ruler](https://raw.githubusercontent.com/rbrahul/Smart-Webpage-Ruler/master/images/chrome.png)](https://chrome.google.com/webstore/detail/smart-page-ruller/nmibbjghlmdiafjolcphdggihcbcedmg)
 
 ## How does it work?
 
