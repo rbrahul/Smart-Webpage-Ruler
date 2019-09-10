@@ -2,8 +2,9 @@
   "name": "zeplin-ruler",
   "version": "1.0.0",
   "main": "src/js/index.js",
-  "license": "MIT",
+  "license": "GPL",
   "private": true,
+  "author": "Rahul Baruri <rahulbaruri1@gmail.com> (https://linkedin.com/in/rahul-baruri-23312311a/)",
   "scripts": {
     "chromify": "node chromify.js",
     "dev": "parcel src/index.html",
