@@ -26,19 +26,9 @@ function sendDeactivationMessage(tabId) {
         contexts: ['all'],
         type: 'normal',
         documentUrlPatterns: ["*://*/*"],
-            onclick: function(info, tab) {
+        onclick: function(info, tab) {
               if (info.menuItemId !== ACTIVATE_MENU_ID) {
                 return;
-              }
-
-              if(info.checked) {
-                chrome.contextMenus.update(ACTIVATE_MENU_ID, {
-                    title: 'Disable'
-                });
-              } else {
-                chrome.contextMenus.update(ACTIVATE_MENU_ID, {
-                    title: 'Enable'
-                });
               }
               sendActivationMessage(tab.id);
             }
@@ -50,7 +40,7 @@ function sendDeactivationMessage(tabId) {
         contexts: ['all'],
         type: 'normal',
         documentUrlPatterns: ["*://*/*"],
-            onclick: function(info, tab) {
+        onclick: function(info, tab) {
               if (info.menuItemId !== DEACTIVATE_MENU_ID) {
                 return;
               }
