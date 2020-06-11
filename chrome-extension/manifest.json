@@ -2,7 +2,7 @@
     "name": "Smart Page Ruler",
     "short_name": "Page Ruler",
     "offline_enabled": true,
-    "version": "1.0.2",
+    "version": "1.0.3",
     "manifest_version": 2,
     "icons": {
         "16": "images/icons/icon-16.png",
@@ -19,8 +19,6 @@
         ]
     },
     "permissions": [
-        "tabs",
-        "activeTab",
         "*://*/*",
         "contextMenus"
     ],
