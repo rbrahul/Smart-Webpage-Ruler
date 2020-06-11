@@ -4,8 +4,6 @@ const DEACTIVATE_MENU_ID = 'DEACTIVATE';
 const INACTIVE = '#8B8B8B';
 const ACTIVE = '#21AF0D';
 
-let SELECTED_TAB_ID = null;
-
 let counter = 0;
 
 function setBadge(text, color) {
@@ -48,7 +46,7 @@ function getRulerActivationStatus(tabId,cb) {
       );
 }
 
-function hanldeTabChange(tabId) {
+function handleTabChange(tabId) {
     getRulerActivationStatus(tabId, (result) => {
         if(!result) {
             showDisabled();
@@ -67,7 +65,7 @@ function hanldeTabChange(tabId) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (
             tabs,
         ) {
-            toggleActivationMessage(tabs[0].id, hanldeTabChange.bind(null, tabs[0].id));
+            toggleActivationMessage(tabs[0].id, handleTabChange.bind(null, tabs[0].id));
         });
     });
 
@@ -100,13 +98,11 @@ function hanldeTabChange(tabId) {
     });
 
 
-    chrome.tabs.onActivated.addListener(tab => {
-        SELECTED_TAB_ID = tab.id;
-        hanldeTabChange(SELECTED_TAB_ID)
+    chrome.tabs.onActivated.addListener(({id}) => {
+        handleTabChange(id)
       });
 
-      chrome.tabs.onUpdated.addListener(tab => {
-        SELECTED_TAB_ID = tab.id;
-        hanldeTabChange(SELECTED_TAB_ID);
+      chrome.tabs.onUpdated.addListener(({id}) => {
+        handleTabChange(id);
       });
 })();
