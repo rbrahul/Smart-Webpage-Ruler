@@ -6,6 +6,7 @@ import {
     clearRullerLabel,
     drawDistanceLine,
     clearDistanceLine,
+    drawShape
 } from '../ruler/draw';
 
 import {
@@ -17,8 +18,8 @@ import {
 
 function getMeasuresOfElement(element) {
     var axis = $(element).offset();
-    var width = $(element).innerWidth();
-    var height = $(element).innerHeight();
+    var width = $(element).outerWidth();
+    var height = $(element).outerHeight();
     return {
         axis,
         width,
@@ -35,7 +36,7 @@ export const clickHandler = (event) => {
         $('.rb-zeplin-selected').removeClass('rb-zeplin-selected');
     }
 
-    if ($('.rb-zeplin-focused').length) {
+   if ($('.rb-zeplin-focused').length) {
         $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
     }
 
@@ -47,6 +48,7 @@ export const clickHandler = (event) => {
     focusedElementPosition = null;
     const rullerStyles = getRullerPosition(selectedElementPosition);
     drawRuller(rullerStyles, selectedElementPosition);
+    drawShape(element);
     return false;
 };
 
@@ -70,6 +72,7 @@ export const mouseEnterHanlder= (e) => {
         $(node).addClass('rb-zeplin-focused');
     }
     clearDistanceLine();
+    drawShape(focusedElement, 'focused');
 
     let distanceOfElements;
     if (

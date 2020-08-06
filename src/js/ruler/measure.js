@@ -8,7 +8,7 @@ export const getRullerPosition = ({
         top: 0,
     };
     const right = {
-        left: `${leftOffset + width}px`,
+        left: `${leftOffset + width-1}px`,
         top: 0,
     };
     const top = {
@@ -18,7 +18,7 @@ export const getRullerPosition = ({
 
     const bottom = {
         left: 0,
-        top: `${topOffset + height}px`,
+        top: `${topOffset + height-1}px`,
     };
 
     return {

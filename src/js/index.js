@@ -14,6 +14,11 @@ window.RB_ZEPLIN_RULLER_ENABLED = false;
 
 
 $(document).ready(() => {
+        $('body').on('click', clickHandler)
+        $('*').on('mouseenter', mouseEnterHanlder);
+
+    /*
+
     initalizeEventSubscription(() => {
         $('body').on('click', clickHandler)
         $('*').on('mouseenter', mouseEnterHanlder);
@@ -22,6 +27,6 @@ $(document).ready(() => {
         $('body').off('click', clickHandler)
         $('*').off('mouseenter', mouseEnterHanlder);
         removeCSS();
-    });
+    });*/
 });
 
