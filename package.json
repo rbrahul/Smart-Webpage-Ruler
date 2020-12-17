@@ -11,7 +11,7 @@
     "build": "rm -rf dist/ && parcel build src/index.html --out-dir dist --out-file index && yarn chromify"
   },
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
