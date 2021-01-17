@@ -48,7 +48,6 @@ export const drawDistanceLine = ({
         distance: widthOfHorizontalGuide,
     },
 }) => {
-    //TODO: add 4 lines if element has parent
     const veriticalLine = $(
         `<div class="rb-zeplin-distance-line rb-zeplin-distance-line-vertical"></div>`,
     );
@@ -98,9 +97,11 @@ const mountShape = ({ top, left, width, height }, type = 'selected') => {
         $('.rb-smart-ruler-shape-' + type).remove();
     }
 
-    const leftLineStyle = `top:${top}px;left:${left}px;height:${height}px;`;
+    const topForLefRightLines = type === 'selected' ? top+2 : top;
+
+    const leftLineStyle = `top:${topForLefRightLines}px;left:${left}px;height:${height}px;`;
     const topLineStyle = `top:${top}px;left:${left}px;width:${width}px;`;
-    const rightLineStyle = `top:${top}px;left:${
+    const rightLineStyle = `top:${topForLefRightLines}px;left:${
         left + width-1
     }px;height:${height}px;`;
     const bottomLineStyle = `top:${
@@ -109,9 +110,9 @@ const mountShape = ({ top, left, width, height }, type = 'selected') => {
 
     const shapeComponet = `
     <div class="rb-smart-ruler-shape-${type}">
-    <div class="rb-smart-ruller-shape-line-left" style="${leftLineStyle}"></div>
     <div class="rb-smart-ruller-shape-line-top" style="${topLineStyle}"></div>
     <div class="rb-smart-ruller-shape-line-right" style="${rightLineStyle}"></div>
+    <div class="rb-smart-ruller-shape-line-left" style="${leftLineStyle}"></div>
     <div class="rb-smart-ruller-shape-line-bottom" style="${bottomLineStyle}"></div>
     </div>
     `;
@@ -120,8 +121,7 @@ const mountShape = ({ top, left, width, height }, type = 'selected') => {
 
 export const drawShape = (element, type = 'selected') => {
     const { left, top } = $(element).offset();
-    const totalTop = top + window.scrollY;
     const width = $(element).outerWidth();
     const height = $(element).outerHeight();
-    mountShape({ top: totalTop, left, width, height }, type);
+    mountShape({ top, left, width, height }, type);
 };

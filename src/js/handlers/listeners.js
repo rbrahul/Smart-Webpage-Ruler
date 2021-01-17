@@ -6,7 +6,7 @@ import {
     clearRullerLabel,
     drawDistanceLine,
     clearDistanceLine,
-    drawShape
+    drawShape,
 } from '../ruler/draw';
 
 import {
@@ -15,6 +15,7 @@ import {
     getRelativeDistance,
 } from '../ruler/measure';
 
+import shouldExclude from '../helpers/shouldExclude';
 
 function getMeasuresOfElement(element) {
     var axis = $(element).offset();
@@ -27,16 +28,19 @@ function getMeasuresOfElement(element) {
     };
 }
 
+const SHAPE_LINE_CLASSES = [];
 
 export const clickHandler = (event) => {
     const { target: element } = event;
+    if (shouldExclude(element.classList)) return;
+
     event.preventDefault();
     event.stopPropagation();
     if ($('.rb-zeplin-selected').length) {
         $('.rb-zeplin-selected').removeClass('rb-zeplin-selected');
     }
 
-   if ($('.rb-zeplin-focused').length) {
+    if ($('.rb-zeplin-focused').length) {
         $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
     }
 
@@ -52,12 +56,14 @@ export const clickHandler = (event) => {
     return false;
 };
 
-export const mouseEnterHanlder= (e) => {
+export const mouseEnterHanlder = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    clearRullerLabel();
 
     const node = e.target;
+    if (shouldExclude(node.classList)) return;
+
+    clearRullerLabel();
     if ($(node).hasClass('rb-zeplin-selected')) {
         return;
     }
@@ -65,10 +71,9 @@ export const mouseEnterHanlder= (e) => {
         $('.rb-zeplin-focused').removeClass('rb-zeplin-focused');
     }
 
-
     focusedElement = node;
     focusedElementPosition = getMeasuresOfElement(node);
-    if(!$(node).is(selectedElement)) {
+    if (!$(node).is(selectedElement)) {
         $(node).addClass('rb-zeplin-focused');
     }
     clearDistanceLine();
@@ -104,4 +109,4 @@ export const mouseEnterHanlder= (e) => {
         }
     }
     return false;
-}
+};

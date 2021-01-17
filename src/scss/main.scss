@@ -129,3 +129,30 @@
     display: block;
     background-color: inherit;
 }
+
+.rb-smart-ruler-shape-selected {
+    .rb-smart-ruller-shape-line-top,
+    .rb-smart-ruller-shape-line-bottom {
+        &::before,
+        &::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            display: block;
+            background: $white;
+            border: 1px solid $border-color;
+            border-radius: 50%;
+            position: absolute;
+            top: -3px;
+            z-index: 2;
+        }
+
+        &::before {
+            left: -3px;
+        }
+
+        &::after {
+            right: -3px;
+        }
+    }
+}
